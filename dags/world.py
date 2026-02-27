@@ -11,7 +11,7 @@ def hello_world(**kwargs):
 with DAG(
     dag_id="python_operator_example",
     start_date=datetime(2026, 2, 27),
-    schedule_interval="@daily",
+    schedule="@daily",
     catchup=False,
     tags=["example"],
 ) as dag:
