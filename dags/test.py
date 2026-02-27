@@ -82,7 +82,7 @@ with DAG(
     task_hello = PythonOperator(
         task_id="say_hello",
         python_callable=hello_world,
-        executor_config={"pod_override": pod_override},
+        #executor_config={"pod_override": pod_override},
     )
 
     end = EmptyOperator(task_id="end")
