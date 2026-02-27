@@ -24,8 +24,8 @@ with DAG(
                 k8s.V1Container(
                     name="base",
                     image="apache/airflow:3.1.7-python3.12",
-                    command=["bash", "-c"],
-                    args=["exec airflow worker"],  # можно заменить на любой запуск
+#                    command=["bash", "-c"],
+#                    args=["exec airflow worker"],  # можно заменить на любой запуск
  #                   env=[
  #                       k8s.V1EnvVar(
  #                           name="AIRFLOW__DATABASE__SQL_ALCHEMY_CONN",
