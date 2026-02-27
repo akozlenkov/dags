@@ -1,11 +1,32 @@
 from datetime import datetime
 from airflow import DAG
-from airflow.operators.dummy_operator import DummyOperator
+from airflow.operators.dummy import DummyOperator
 
-def print_hello():
- return 'Hello Wolrd'
+# Определяем DAG
+with DAG(
+    dag_id="dummy_example",
+    start_date=datetime(2026, 2, 27),
+    schedule_interval="@daily",
+    catchup=False,
+    tags=["example"],
+) as dag:
 
-dag = DAG('hello_world', description='Hello world example', schedule_interval='0 12 * * *', start_date=datetime(2017, 3, 20), catchup=False)
+    start = DummyOperator(
+        task_id="start"
+    )
 
-dummy_operator = DummyOperator(task_id='dummy_task', retries = 3, dag=dag)
+    task_1 = DummyOperator(
+        task_id="task_1"
+    )
+
+    task_2 = DummyOperator(
+        task_id="task_2"
+    )
+
+    end = DummyOperator(
+        task_id="end"
+    )
+
+    # Определяем последовательность
+    start >> [task_1, task_2] >> end
 
